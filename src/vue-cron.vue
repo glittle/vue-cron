@@ -326,7 +326,7 @@
     <div class="result">
       <span class="value">{{this.final}}</span>
       <el-button size="small" type="primary" @click="change">{{text.Save}}</el-button>
-      <el-button size="small" @click="close">{{text.Close}}</el-button>
+      <el-button size="small" @click="close">{{text.Cancel}}</el-button>
     </div>
   </div>
 </template>
@@ -622,6 +622,7 @@ export default {
   methods: {
     change() {
       this.$emit("input", this.final);
+      this.$emit("close");
     },
     close() {
       this.$emit("close");
