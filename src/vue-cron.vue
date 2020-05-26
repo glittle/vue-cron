@@ -310,7 +310,7 @@ import Language from "./language/index";
 export default {
   name: "VueCron",
   props: {
-    input: String,
+    value: String,
     lang: String
   },
   data() {
@@ -575,29 +575,25 @@ export default {
     }
   },
   watch: {
-    input(a, b) {
+    value(a) {
       this.parse(a);
-    }
+    },
   },
   mounted() {
-    this.parse(this.input);
+    this.parse(this.value);
   },
   methods: {
-    getValue() {
-      return this.final;
-    },
     change() {
-      this.$emit("change", this.final);
-      this.close();
+      this.$emit("input", this.final);
     },
     close() {
       this.$emit("close");
     },
-    parse(input) {
-      if (!input) return;
+    parse(s) {
+      if (!s) return;
 
       // ref github.com/bradymholt/cron-expression-descriptor/blob/master/lib/ExpressionParser.cs
-      var parts = input.split(" ");
+      var parts = s.split(" ");
       var numParts = parts.length;
       if (numParts < 5) return;
       if (numParts > 7) return;
@@ -853,24 +849,24 @@ export default {
       // default
       target.cronEvery = "1";
     },
-    rest(data) {
-      debugger;
-      // what is this for?
-      for (let i in data) {
-        if (data[i] instanceof Object) {
-          this.rest(data[i]);
-        } else {
-          switch (typeof data[i]) {
-            case "object":
-              data[i] = [];
-              break;
-            case "string":
-              data[i] = "";
-              break;
-          }
-        }
-      }
-    }
+    // rest(data) {
+    //   debugger;
+    //   // what is this for?
+    //   for (let i in data) {
+    //     if (data[i] instanceof Object) {
+    //       this.rest(data[i]);
+    //     } else {
+    //       switch (typeof data[i]) {
+    //         case "object":
+    //           data[i] = [];
+    //           break;
+    //         case "string":
+    //           data[i] = "";
+    //           break;
+    //       }
+    //     }
+    //   }
+    // }
   }
 };
 </script>
