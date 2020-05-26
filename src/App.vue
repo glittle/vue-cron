@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h2>Sample</h2>
-    <vueCron :input="value" v-on:change="update"></vueCron>
+    <vueCron v-model="value"></vueCron>
     <p>
       Initial Input:
       <el-input v-model="value"></el-input>
@@ -23,9 +23,9 @@ export default {
     };
   },
   methods: {
-    update(v) {
-      this.value = v;
-    }
+    // update(v) {
+    //   this.value = v;
+    // }
   }
 };
 </script>

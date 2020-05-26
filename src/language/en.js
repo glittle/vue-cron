@@ -1,20 +1,20 @@
 export default {
     Seconds:{
-        name:'Seconds',
+        name:'Second',
         every:'Every second',
         interval:['Every','second(s) starting at second'],
         specific:'Specific second (choose one or many)',
         cycle:['Every second between second','and second']
     },
     Minutes:{
-        name:'Minutes',
+        name:'Minute',
         every:'Every minute',
         interval:['Every','minute(s) starting at minute'],
         specific:'Specific minute (choose one or many)',
         cycle:['Every minute between minute','and minute']
     },
     Hours:{
-        name:'Hours',
+        name:'Hour',
         every:'Every hour',
         interval:['Every','hour(s) starting at hour'],
         specific:'Specific hour (choose one or many)',
@@ -50,5 +50,8 @@ export default {
         cycle:['Every year between','and']
     },
     Save:'Save',
-    Close:'Close'
+    Close:'Close',
+    Samples:{
+        name: 'Samples'
+    }
 }
