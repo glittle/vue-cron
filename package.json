@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --target wc --name vue-cron src/vue-cron.vue",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^3.6.4",
+    "element-ui": "^2.13.2",
+    "less-loader": "^6.1.0",
     "vue": "^2.6.11"
   },
   "devDependencies": {
@@ -32,7 +34,10 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "no-debugger": "warn",
+      "no-unused-vars": "warn"
+    }
   },
   "browserslist": [
     "> 1%",

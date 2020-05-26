@@ -1,28 +1,40 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h2>Sample</h2>
+    <vueCron :input="value" v-on:change="update"></vueCron>
+    <p>
+      Initial Input:
+      <el-input v-model="value"></el-input>
+    </p>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import vueCron from "./vue-cron";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    vueCron
+  },
+  data() {
+    return {
+      value: "* * * * * * 2020-2022"
+    };
+  },
+  methods: {
+    update(v) {
+      this.value = v;
+    }
   }
-}
+};
 </script>
 
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
 }
 </style>
+    
