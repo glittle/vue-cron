@@ -50,7 +50,7 @@
                       v-for="(val,i) in text.Month.months"
                       :key="val"
                       :label="val"
-                      :value="(i+1)"
+                      :value="''+(i+1)"
                     ></el-option>
                   </el-select>
                 </el-radio>
@@ -83,7 +83,7 @@
                       v-for="(val,i) in text.Month.months"
                       :key="val"
                       :label="val"
-                      :value="(i+1)"
+                      :value="''+(i+1)"
                     ></el-option>
                   </el-select>
                   {{text.Month.cycle[1]}}
@@ -92,7 +92,7 @@
                       v-for="(val,i) in text.Month.months"
                       :key="val"
                       :label="val"
-                      :value="(i+1)"
+                      :value="''+(i+1)"
                     ></el-option>
                   </el-select>
                 </el-radio>
@@ -175,7 +175,7 @@
                 <el-radio v-model="day.mode" label="11">
                   {{text.Day.someWeekday[0]}}
                   <el-select size="small" v-model="week.nthOrdinal">
-                    <el-option v-for="(val,i) in ordinals5" :key="val" :label="val" :value="i+1"></el-option>
+                    <el-option v-for="(val,i) in ordinals5" :key="val" :label="val" :value="''+(i+1)"></el-option>
                   </el-select>&nbsp;
                   <el-select size="small" v-model="week.nthDow">
                     <el-option
@@ -282,10 +282,26 @@
             </span>
             <div class="tabBody">
               <el-row>
+                <span v-if="debug" class="debugMode">5</span>
+                <el-radio v-model="hour.mode" label="5">
+                  {{text.Hours.midnight}}
+                  <span></span>
+                </el-radio>
+              </el-row>
+              <el-row>
                 <span v-if="debug" class="debugMode">1</span>
                 <el-radio v-model="hour.mode" label="1">
                   {{text.Hours.every}}
                   <span></span>
+                </el-radio>
+              </el-row>
+              <el-row>
+                <span v-if="debug" class="debugMode">3</span>
+                <el-radio class="long" v-model="hour.mode" label="3">
+                  {{text.Hours.specific}}
+                  <el-select size="small" multiple v-model="hour.specific">
+                    <el-option v-for="val in 24" :key="val" :value="val-1">{{val-1}}</el-option>
+                  </el-select>
                 </el-radio>
               </el-row>
               <el-row>
@@ -298,15 +314,7 @@
                   {{text.Hours.interval[2]}}
                 </el-radio>
               </el-row>
-              <el-row>
-                <span v-if="debug" class="debugMode">3</span>
-                <el-radio class="long" v-model="hour.mode" label="3">
-                  {{text.Hours.specific}}
-                  <el-select size="small" multiple v-model="hour.specific">
-                    <el-option v-for="val in 24" :key="val" :value="val-1">{{val-1}}</el-option>
-                  </el-select>
-                </el-radio>
-              </el-row>
+
               <el-row>
                 <span v-if="debug" class="debugMode">4</span>
                 <el-radio v-model="hour.mode" label="4">
@@ -325,6 +333,13 @@
               {{text.Minutes.name}}
             </span>
             <div class="tabBody">
+              <el-row>
+                <span v-if="debug" class="debugMode">5</span>
+                <el-radio v-model="minute.mode" label="5">
+                  {{text.Minutes.top}}
+                  <span></span>
+                </el-radio>
+              </el-row>
               <el-row>
                 <span v-if="debug" class="debugMode">1</span>
                 <el-radio v-model="minute.mode" label="1">
@@ -370,6 +385,13 @@
               {{text.Seconds.name}}
             </span>
             <div class="tabBody">
+                <el-row>
+                <span v-if="debug" class="debugMode">5</span>
+                <el-radio v-model="second.mode" label="5">
+                  {{text.Seconds.top}}
+                  <span></span>
+                </el-radio>
+              </el-row>
               <el-row>
                 <span v-if="debug" class="debugMode">1</span>
                 <el-radio v-model="second.mode" label="1">
@@ -448,7 +470,7 @@ export default {
         incrementInc: 5,
         rangeStart: "",
         rangeEnd: "",
-        specific: []
+        specific: ["0"]
       },
       minute: {
         mode: "",
@@ -456,7 +478,7 @@ export default {
         incrementInc: 5,
         rangeStart: "",
         rangeEnd: "",
-        specific: []
+        specific: ["0"]
       },
       hour: {
         mode: "",
@@ -464,7 +486,7 @@ export default {
         incrementInc: 5,
         rangeStart: "",
         rangeEnd: "",
-        specific: []
+        specific: ["0"]
       },
       day: {
         mode: "",
@@ -472,7 +494,7 @@ export default {
         incrementInc: 1,
         rangeStart: "",
         rangeEnd: "",
-        specific: [],
+        specific: ["1"],
         lastSpecificDom: 1,
         daysBeforeEom: "",
         nearestWeekday: ""
@@ -481,7 +503,7 @@ export default {
         // mode: "",
         incrementStart: 1,
         incrementInc: 1,
-        specific: [],
+        specific: ["SUN"],
         nthDow: 1,
         nthOrdinal: 1
       },
@@ -491,7 +513,7 @@ export default {
         incrementInc: 5,
         rangeStart: "",
         rangeEnd: "",
-        specific: []
+        specific: ["1"]
       },
       year: {
         mode: "",
@@ -540,6 +562,9 @@ export default {
         case "4":
           seconds = this.second.rangeStart + "-" + this.second.rangeEnd;
           break;
+        case "5":
+          seconds = "0";
+          break;
       }
       return seconds;
     },
@@ -559,6 +584,9 @@ export default {
         case "4":
           minutes = this.minute.rangeStart + "-" + this.minute.rangeEnd;
           break;
+        case "5":
+          minutes = "0";
+          break;
       }
       return minutes;
     },
@@ -577,6 +605,9 @@ export default {
           break;
         case "4":
           hours = this.hour.rangeStart + "-" + this.hour.rangeEnd;
+          break;
+        case "5": // midnight
+          hours = "0";
           break;
       }
       return hours;
@@ -767,7 +798,7 @@ export default {
       }
       if (s === "0") {
         target.specific = [s];
-        target.mode = "3";
+        target.mode = "5";
         return;
       }
       var parts = s.split("/");
@@ -802,7 +833,7 @@ export default {
       }
       if (s === "0") {
         target.specific = [s];
-        target.mode = "3";
+        target.mode = "5";
         return;
       }
       var parts = s.split("/");
@@ -837,7 +868,7 @@ export default {
       }
       if (s === "0") {
         target.specific = [s];
-        target.mode = "3";
+        target.mode = "5";
         return;
       }
       var parts = s.split("/");

@@ -19,7 +19,7 @@ export default {
   },
   data() {
     return {
-      value: "* * * * * * 2020-2022",
+      value: "0 0 0 1 1 * 2020-2022",
       debug: true
     };
   },

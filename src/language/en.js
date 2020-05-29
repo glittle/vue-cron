@@ -3,21 +3,24 @@ export default {
         name:'Second',
         every:'Every second',
         interval:['Every','second(s) starting at second'],
-        specific:'Specific second (choose one or many)',
-        cycle:['Every second between second','and second']
+        specific:'Specific second(s) (choose one or many)',
+        cycle:['Every second between second','and second'],
+        top:'At the first second'
     },
     Minutes:{
         name:'Minute',
         every:'Every minute',
         interval:['Every','minute(s) starting at minute'],
-        specific:'Specific minute (choose one or many)',
-        cycle:['Every minute between minute','and minute']
+        specific:'Specific minute(s) (choose one or many)',
+        cycle:['Every minute between minute','and minute'],
+        top:'At the top of the hour'
     },
     Hours:{
         name:'Hour',
         every:'Every hour',
+        midnight:'At midnight',
         interval:['Every','hour(s) starting at hour'],
-        specific:'Specific hour (choose one or many)',
+        specific:'Specific hour(s) (choose one or many)',
         cycle:['Every hour between hour','and hour']
     },
     Day:{
