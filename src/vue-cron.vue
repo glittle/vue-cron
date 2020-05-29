@@ -141,7 +141,7 @@
                   {{text.Day.intervalDay[0]}}
                   <el-input-number size="small" v-model="day.incrementInc" :min="1" :max="31"></el-input-number>
                   {{text.Day.intervalDay[1]}}
-                  <el-input-number size="small" v-model="day.incrementInc" :min="1" :max="31"></el-input-number>
+                  <el-input-number size="small" v-model="day.incrementStart" :min="1" :max="31"></el-input-number>
                   {{text.Day.intervalDay[2]}}
                 </el-radio>
               </el-row>
