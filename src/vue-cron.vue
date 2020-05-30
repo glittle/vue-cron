@@ -1,5 +1,6 @@
 <template>
   <div class="VueCron">
+    <span class="extra" v-text="this.extra"></span>
     <div :class="{forDebug: debug}">
       <div>
         <el-tabs type="border-card" :value="tabNum">
@@ -175,7 +176,12 @@
                 <el-radio v-model="day.mode" label="11">
                   {{text.Day.someWeekday[0]}}
                   <el-select size="small" v-model="week.nthOrdinal">
-                    <el-option v-for="(val,i) in ordinals5" :key="val" :label="val" :value="''+(i+1)"></el-option>
+                    <el-option
+                      v-for="(val,i) in ordinals5"
+                      :key="val"
+                      :label="val"
+                      :value="''+(i+1)"
+                    ></el-option>
                   </el-select>&nbsp;
                   <el-select size="small" v-model="week.nthDow">
                     <el-option
@@ -385,7 +391,7 @@
               {{text.Seconds.name}}
             </span>
             <div class="tabBody">
-                <el-row>
+              <el-row>
                 <span v-if="debug" class="debugMode">5</span>
                 <el-radio v-model="second.mode" label="5">
                   {{text.Seconds.top}}
@@ -460,6 +466,7 @@ export default {
       default: true
     },
     lang: String,
+    extra: String, // allow external injection of text
     debug: Boolean
   },
   data() {
@@ -743,7 +750,8 @@ export default {
     }
   },
   mounted() {
-    this.parse(this.value);
+    var defaultValue = "0 0 0 * * ? *";
+    this.parse(this.value || defaultValue);
   },
   methods: {
     change() {
@@ -1110,6 +1118,11 @@ export default {
       display: block;
       margin: 1em 0;
       font-size: 18px;
+    }
+    .extra {
+      display: block;
+      margin: 1em 0;
+      font-size: 16px;
     }
     .Seconds,
     .Minutes,

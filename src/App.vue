@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h2>Sample</h2>
-    <vueCron v-model="value" :show-seconds="true" :debug="debug"></vueCron>
+    <vueCron v-model="value" :show-seconds="true" :extra="extra" :debug="debug"></vueCron>
     <p>
       Initial Input:
       <el-input v-model="value"></el-input>
@@ -20,6 +20,7 @@ export default {
   data() {
     return {
       value: "0 0 0 1 1 * 2020-2022",
+      extra: "test",
       debug: true
     };
   },

@@ -51,7 +51,7 @@ export default {
     },
     Year:{
         name:'Year',
-        every:'Any year',
+        every:'Every year',
         interval:['Every','year(s) starting in'],
         specific:'Specific year(s) (choose one or many)',
         cycle:['Every year between','and']
